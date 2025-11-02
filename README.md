@@ -26,11 +26,11 @@ First, download the latest release:
 
 ```bash
 # Download the binary
-curl -L -o abletoncli https://github.com/aubsynth/AbletonCLI/releases/download/v0.1.1/abletoncli
+curl -L -o abletoncli https://github.com/aubsynth/AbletonCLI/releases/download/v0.1.2/abletoncli
 chmod +x abletoncli
 
 # Download the installation script
-curl -L -o install.sh https://github.com/aubsynth/AbletonCLI/releases/download/v0.1.1/install.sh
+curl -L -o install.sh https://github.com/aubsynth/AbletonCLI/releases/download/v0.1.2/install.sh
 chmod +x install.sh
 ```
 Make sure the install script and abletoncli binary are in the same folder.
@@ -122,6 +122,23 @@ Backup a specific directory to a custom location:
 abletoncli backup --directory ~/Music/Projects --destination ~/Backups/AbletonProjects
 ```
 
+### Common Use Cases
+
+#### Moving from OneDrive to iCloud
+```bash
+abletoncli migrate --replace "/Users/username/OneDrive/" --with "/Users/username/Library/Mobile Documents/com~apple~CloudDocs/"
+```
+
+#### Migrating to a New Computer
+```bash
+abletoncli migrate --replace "/Users/oldusername/Documents" --with "/Users/newusername/Documents"
+```
+
+#### Reorganizing Project Structure
+```bash
+abletoncli migrate --replace "/Music/Old Structure/Projects" --with "/Music/New Structure/Ableton Projects"
+```
+
 ### Global Flags
 
 These flags work with any command:
@@ -154,7 +171,7 @@ These flags work with any command:
 
 - **Built with**: Go and [Cobra CLI framework](https://github.com/spf13/cobra)
 - **File Format**: Ableton Live `.als` files are gzipped XML documents
-- **Version**: 0.1.1
+- **Version**: 0.1.2
 - **Compatibility**: macOS, Linux, Windows
 
 ## Development
