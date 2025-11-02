@@ -26,11 +26,11 @@ First, download the latest release:
 
 ```bash
 # Download the binary
-curl -L -o abletoncli https://github.com/aubsynth/AbletonCLI/releases/download/v0.1.0/abletoncli
+curl -L -o abletoncli https://github.com/aubsynth/AbletonCLI/releases/download/v0.1.1/abletoncli
 chmod +x abletoncli
 
 # Download the installation script
-curl -L -o install.sh https://github.com/aubsynth/AbletonCLI/releases/download/v0.1.0/install.sh
+curl -L -o install.sh https://github.com/aubsynth/AbletonCLI/releases/download/v0.1.1/install.sh
 chmod +x install.sh
 ```
 Make sure the install script and abletoncli binary are in the same folder.
@@ -154,7 +154,7 @@ These flags work with any command:
 
 - **Built with**: Go and [Cobra CLI framework](https://github.com/spf13/cobra)
 - **File Format**: Ableton Live `.als` files are gzipped XML documents
-- **Version**: 0.1.0
+- **Version**: 0.1.1
 - **Compatibility**: macOS, Linux, Windows
 
 ## Development
