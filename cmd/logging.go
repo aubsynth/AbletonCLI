@@ -25,6 +25,10 @@ func logInfo(msg string) {
 	fmt.Printf("%s[INFO]%s %s\n", colorGreen, colorReset, msg)
 }
 
+func logPrompt(msg string) {
+	fmt.Printf("%s[INFO]%s %s", colorGreen, colorReset, msg)
+}
+
 func logDebug(msg string) {
 	if debugMode {
 		fmt.Printf("%s[DEBUG]%s %s\n", colorBlue, colorReset, msg)

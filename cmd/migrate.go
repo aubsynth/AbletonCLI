@@ -62,6 +62,25 @@ func migrateRun(cmd *cobra.Command, args []string) {
 		return
 	}
 
+	if _, err := os.Stat("../backup"); os.IsNotExist(err) {
+		logInfo("Backup not found at ../backup")
+		if !dryRun {
+			logPrompt("This will modify files. Make sure you run a backup first. Are you sure you want to continue? (y/n): ")
+			reader := bufio.NewReader(os.Stdin)
+			input, _ := reader.ReadString('\n')
+			input = strings.TrimSpace(strings.ToLower(input)) // Clean and normalize input
+
+			if input == "y" {
+				logInfo("Proceeding with file migration...")
+			} else {
+				fmt.Println("Exiting program.")
+				return
+			}
+		}
+	} else {
+		fmt.Println("The provided directory named", "../backup", "exists")
+	}
+
 	fileExtension := ".als" // Ableton File Extension
 	logInfo(fmt.Sprintf("Finding files in directory: %s with file extension: %s", directoryVal, fileExtension))
 
