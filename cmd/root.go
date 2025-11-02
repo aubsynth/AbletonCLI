@@ -17,7 +17,7 @@ var rootCmd = &cobra.Command{
 	Use:     "abletoncli",
 	Short:   "AbletonCLI is a command-line interface for Ableton Live",
 	Long:    `AbletonCLI is a command-line interface for Ableton Live built with Cobra in Go.`,
-	Version: "0.1.0",
+	Version: "0.1.1",
 	CompletionOptions: cobra.CompletionOptions{
 		DisableDefaultCmd: true,
 	},
