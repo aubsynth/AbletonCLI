@@ -12,11 +12,13 @@ import (
 
 func init() {
 	rootCmd.AddCommand(backup)
-	backup.Flags().String("directory", ".", "Directory to backup")
+	backup.Flags().String("directory", ".", "Backup source directory")
 	backup.Flags().String("destination", "../backup/", "Backup destination directory")
+	backup.Flags().BoolVar(&fullBackup, "full", false, "Perform a full backup of all files (not just .als files)")
 }
 
 var (
+	fullBackup            bool
 	total_files_backed_up int
 	total_files_to_backup int
 	backup                = &cobra.Command{
@@ -49,8 +51,10 @@ func backupRun(cmd *cobra.Command, args []string) {
 		if walkErr != nil {
 			return walkErr
 		}
-		// match extension case-insensitively (.als, .ALS, etc.)
-		if !d.IsDir() && strings.EqualFold(filepath.Ext(d.Name()), fileExtension) {
+		// Check if file matches criteria (full backup = all files, otherwise just .als files)
+		shouldBackup := !d.IsDir() && (fullBackup || strings.EqualFold(filepath.Ext(d.Name()), fileExtension))
+
+		if shouldBackup {
 			total_files_to_backup++
 			logDebug(fmt.Sprintf("Found file: %s", path))
 			// copy folder structure to backup location
@@ -60,13 +64,8 @@ func backupRun(cmd *cobra.Command, args []string) {
 				return nil
 			}
 			destinationVal := filepath.Join(destinationPath, relativePath)
-			// Get source file info
-			sourceFileInfo, err := os.Stat(path)
-			if err != nil {
-				return err
-			}
-			// Copy file to destination
-			if err := os.MkdirAll(filepath.Dir(destinationVal), sourceFileInfo.Mode()); err != nil {
+			// Copy file to destination - create directories with proper permissions
+			if err := os.MkdirAll(filepath.Dir(destinationVal), 0755); err != nil {
 				logError(fmt.Sprintf("Error creating directories: %v", err))
 				return nil
 			}

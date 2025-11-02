@@ -33,6 +33,7 @@ chmod +x abletoncli
 curl -L -o install.sh https://github.com/aubsynth/AbletonCLI/releases/download/v0.1.0/install.sh
 chmod +x install.sh
 ```
+Make sure the install script and abletoncli binary are in the same folder.
 
 Then run the installation script to automatically install AbletonCLI and set up shell completion:
 
