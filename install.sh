@@ -28,7 +28,7 @@ echo ""
 
 
 # Check if binary exists
-if [ ! -f "bin/abletoncli" ]; then
+if [ ! -f "abletoncli" ]; then
     echo -e "${RED}Error: abletoncli binary not found${RESET}"
     echo "Please build it first with: go build"
     exit 1
